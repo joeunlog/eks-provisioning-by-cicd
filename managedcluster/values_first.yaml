@@ -11,7 +11,7 @@ eksControlPlane:
   eksname: managed-first-control-plane
   region: us-east-1
   sshKeyName: 20221104clusterapi
-  kubeVersion: v1.21
+  kubeVersion: v1.22
 
 eksManagedNodeGroup:
   name: ops-group
