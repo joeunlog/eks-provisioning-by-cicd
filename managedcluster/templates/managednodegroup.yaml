@@ -1,0 +1,24 @@
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: MachinePool
+metadata:
+  name: {{ .Values.eksManagedNodeGroup.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  clusterName: {{ .Values.cluster.clustername }}
+  replicas: {{ .Values.eksManagedNodeGroup.replicas }}
+  template:
+    spec:
+      bootstrap:
+        dataSecretName: ""
+      clusterName: {{ .Values.cluster.clustername }}
+      infrastructureRef:
+        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+        kind: AWSManagedMachinePool
+        name: {{ .Values.eksManagedNodeGroup.name }}
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
+kind: AWSManagedMachinePool
+metadata:
+  name: {{ .Values.eksManagedNodeGroup.name }}
+  namespace: {{ .Values.namespace }}
+spec: {}
