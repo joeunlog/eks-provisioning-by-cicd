@@ -1,0 +1,21 @@
+nameOverride: {}
+fullnameOverride: {}
+
+namespace: first
+region: us-east-1
+
+cluster:
+  clustername: managed-first
+  podsCidr: []
+
+awscluster:
+  awsclustername: managed-first
+
+eksControlPlane:
+  eksname: managed-first-control-plane
+  sshKeyName: 20221104clusterapi
+  kubeVersion: v1.22.9
+
+eksManagedNodeGroup:
+  name: ops-group
+  replicas: 2
