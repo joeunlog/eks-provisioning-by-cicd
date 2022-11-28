@@ -2,20 +2,33 @@ nameOverride: {}
 fullnameOverride: {}
 
 namespace: first
+
 region: us-east-1
 
 cluster:
   clustername: managed-first
   podsCidr: []
 
-awscluster:
-  awsclustername: managed-first
+# awscluster:
+#   awsclustername: managed-first
 
 eksControlPlane:
   eksname: managed-first-control-plane
+  region: us-east-1  
   sshKeyName: 20221104clusterapi
   kubeVersion: v1.22.9
+  vpc:
+    cidrBlock: "10.10.0.0/16"
+    availabilityZoneUsageLimit: 2
+  subnets:
+    - cidrBlock: "10.10.10.0/24"
+      availabilityZone: "us-east-1a"
+      isPublic: true
+      tags:
+        owned: {{ .Values.awscluster.awsclustername }} 
+  bastion: true    
 
 eksManagedNodeGroup:
   name: ops-group
   replicas: 2
+  amiVersion: ""

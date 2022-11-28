@@ -3,6 +3,8 @@ fullnameOverride: {}
 
 namespace: first
 
+region: us-east-1
+
 cluster:
   clustername: managed-first
   podsCidr:
