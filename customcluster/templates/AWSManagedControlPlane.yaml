@@ -11,7 +11,7 @@ spec:
     vpc:
       cidrBlock: {{ .Values.eksControlPlane.vpc.cidrBlock }}
       tags:
-        owned: {{ .Values.awscluster.awsclustername }}
+        owned: {{ .Values.cluster.clustername }}
       availabilityZoneUsageLimit: {{ .Values.eksControlPlane.vpc.availabilityZoneUsageLimit }}
       availabilityZoneSelection: Ordered
     {{- with .Values.eksControlPlane.subnets }}
