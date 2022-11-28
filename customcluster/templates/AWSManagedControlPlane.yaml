@@ -1,0 +1,23 @@
+apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+kind: AWSManagedControlPlane
+metadata:
+  name: {{ .Values.eksControlPlane.eksname }}
+  namespace: {{ .Values.namespace }}
+spec:
+  region: {{ .Values.region }}
+  sshKeyName: {{ .Values.eksControlPlane.sshKeyName }}
+  version: {{ .Values.eksControlPlane.kubeVersion }}
+  network:
+    vpc:
+      cidrBlock: {{ .Values.eksControlPlane.vpc.cidrBlock }}
+      tags:
+        owned: {{ .Values.awscluster.awsclustername }}
+      availabilityZoneUsageLimit: {{ .Values.eksControlPlane.vpc.availabilityZoneUsageLimit }}
+      availabilityZoneSelection: Ordered
+    {{- with .Values.eksControlPlane.subnets }}
+    subnets:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
+  # region: "us-east-1"
+  bastion:
+    enabled: {{ .Values.eksControlPlane.bastion }}

@@ -21,4 +21,13 @@ kind: AWSManagedMachinePool
 metadata:
   name: {{ .Values.eksManagedNodeGroup.name }}
   namespace: {{ .Values.namespace }}
-spec: {}
+spec:
+  amiVersion: {{ .Values.eksManagedNodeGroup.amiVersion }}
+  availabilityZones:
+    - "us-east-1a"
+    - "us-east-1b"
+  diskSize: 10
+  eksNodegroupName: mediumgroup
+  instanceType: t3.medium
+  remoteAccess:
+    sshKeyName: 20221104clusterapi

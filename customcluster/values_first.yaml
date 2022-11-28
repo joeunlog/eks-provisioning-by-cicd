@@ -5,14 +5,41 @@ namespace: first
 
 cluster:
   clustername: managed-first
-  podsCidr: []
+  podsCidr:
+    - "10.10.0.0/16"
 
 eksControlPlane:
   eksname: managed-first-control-plane
   region: us-east-1
   sshKeyName: 20221104clusterapi
   kubeVersion: v1.22
+  vpc:
+    cidrBlock: "10.10.0.0/16"
+    availabilityZoneUsageLimit: 2
+  subnets:
+    - cidrBlock: "10.10.10.0/24"
+      availabilityZone: "us-east-1a"
+      isPublic: true
+      tags:
+        owned: {{ .Values.awscluster.awsclustername }}
+    - cidrBlock: "10.10.11.0/24"
+      availabilityZone: "us-east-1b"
+      isPublic: true
+      tags:
+        owned: {{ .Values.awscluster.awsclustername }}
+    - cidrBlock: "10.10.20.0/24"
+      availabilityZone: "us-east-1a"
+      isPublic: false
+      tags:
+        owned: {{ .Values.awscluster.awsclustername }}
+    - cidrBlock: "10.10.21.0/24"
+      availabilityZone: "us-east-1b"
+      isPublic: false
+      tags:
+        owned: {{ .Values.awscluster.awsclustername }}    
+  bastion: true
 
 eksManagedNodeGroup:
   name: ops-group
   replicas: 2
+  amiVersion: "ami-0878b75b482934e1f"
