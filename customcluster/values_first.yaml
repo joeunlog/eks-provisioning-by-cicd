@@ -23,22 +23,22 @@ eksControlPlane:
       availabilityZone: "us-east-1a"
       isPublic: true
       tags:
-        owned: {{ .Values.awscluster.awsclustername }}
+        owned: {{ .Values.cluster.clustername }}
     - cidrBlock: "10.10.11.0/24"
       availabilityZone: "us-east-1b"
       isPublic: true
       tags:
-        owned: {{ .Values.awscluster.awsclustername }}
+        owned: {{ .Values.cluster.clustername }}
     - cidrBlock: "10.10.20.0/24"
       availabilityZone: "us-east-1a"
       isPublic: false
       tags:
-        owned: {{ .Values.awscluster.awsclustername }}
+        owned: {{ .Values.cluster.clustername }}
     - cidrBlock: "10.10.21.0/24"
       availabilityZone: "us-east-1b"
       isPublic: false
       tags:
-        owned: {{ .Values.awscluster.awsclustername }}    
+        owned: {{ .Values.cluster.clustername }}
   bastion: true
 
 eksManagedNodeGroup:
