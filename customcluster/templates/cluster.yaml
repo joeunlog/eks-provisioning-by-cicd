@@ -15,9 +15,6 @@ spec:
     kind: AWSManagedControlPlane
     name: {{ .Values.eksControlPlane.eksname }}
   infrastructureRef:
-    # apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
-    # kind: AWSCluster
-    # name: {{ .Values.awscluster.awsclustername }}
     apiVersion: controlplane.cluster.x-k8s.io/v1beta1
     kind: AWSManagedControlPlane
     name: {{ .Values.eksControlPlane.eksname }}
