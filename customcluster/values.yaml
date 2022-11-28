@@ -24,8 +24,7 @@ eksControlPlane:
     - cidrBlock: "10.10.10.0/24"
       availabilityZone: "us-east-1a"
       isPublic: true
-      tags:
-        owned: {{ .Values.awscluster.awsclustername }} 
+      tags: ""
   bastion: true    
 
 eksManagedNodeGroup:
