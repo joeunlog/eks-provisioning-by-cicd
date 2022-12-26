@@ -1,0 +1,9 @@
+apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+kind: AWSManagedControlPlane
+metadata:
+  name: {{ .Values.eksControlPlane.eksname }}
+  namespace: {{ .Values.namespace }}
+spec:
+  region: {{ .Values.eksControlPlane.region }}
+  sshKeyName: {{ .Values.eksControlPlane.sshKeyName }}
+  version: {{ .Values.eksControlPlane.kubeVersion }}
